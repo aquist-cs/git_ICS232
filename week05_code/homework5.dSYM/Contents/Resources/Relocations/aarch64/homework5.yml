@@ -1,0 +1,11 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/tony/Library/Mobile Documents/com~apple~CloudDocs/Metro State University /BS_Computer_Science/ICS232/Week 5/Code/homework5'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _findMax, symObjAddr: 0x0, symBinAddr: 0x100003EB0, symSize: 0x90 }
+  - { offsetInCU: 0x3F, offset: 0x3F, size: 0x8, addend: 0x0, symName: _array1, symObjAddr: 0xD8, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x6E, offset: 0x6E, size: 0x8, addend: 0x0, symName: _array2, symObjAddr: 0xEC, symBinAddr: 0x100008014, symSize: 0x0 }
+  - { offsetInCU: 0x83, offset: 0x83, size: 0x8, addend: 0x0, symName: _size1, symObjAddr: 0x100, symBinAddr: 0x100008028, symSize: 0x0 }
+  - { offsetInCU: 0x93, offset: 0x93, size: 0x8, addend: 0x0, symName: _findMax, symObjAddr: 0x0, symBinAddr: 0x100003EB0, symSize: 0x90 }
+  - { offsetInCU: 0xF3, offset: 0xF3, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x90, symBinAddr: 0x100003F40, symSize: 0x48 }
+...

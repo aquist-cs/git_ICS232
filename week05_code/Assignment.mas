@@ -1,0 +1,25 @@
+﻿/ Anthony Quist
+
+top,	load X
+		Subt Num
+        Skipcond 800
+        Jump inc
+        Load Sum
+        output
+        halt
+        
+inc,	Load X
+		Add Sum 
+        Store Sum
+        Load X
+        Add One
+        Store X
+        Jump top
+        
+
+
+One,	DEC 1
+X,		DEC 1
+Num,	DEC 10 
+Sum,	DEC 0 
+

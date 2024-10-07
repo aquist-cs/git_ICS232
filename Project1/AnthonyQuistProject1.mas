@@ -1,0 +1,142 @@
+ORG 100 
+// Anthony Quist // 
+/ Get user Input
+INPUT 
+STORE N1 
+INPUT 
+STORE OP
+INPUT 
+STORE N2
+
+// Checks to see if the operator is multiplication // 
+CheckTimes, LOAD OP / load operator
+			SUBT TIMES / subtract multiply operator
+            SKIPCOND 800 / if op - times > 0, skip next
+            JUMP CheckSign
+            JUMP CheckPlus 
+
+// Checks to see if the operator is addition // 
+CheckPlus, LOAD OP / load operator
+		   SUBT PLUS / subtract addition operator	
+           SKIPCOND 800 / if op - plus > 0, skip next
+           JUMP Add
+           JUMP CheckMinus
+
+// Checks to see if the operator is subtraction // 
+CheckMinus, LOAD OP / load oeprator 
+			SUBT MINUS / subtract minus operator 
+            SKIPCOND 800 / if op - minus > 0, skip next
+            JUMP Sub
+            JUMP CheckDivide
+
+// Checks to see of the operator is division // 
+CheckDivide, LOAD OP / load operator
+			 SUBT DIVIDE / subtract division operator 
+             SKIPCOND 800 / if op - divide > 0, skip to invalid
+             JUMP Div
+             JUMP Invalid
+
+// Checks to see if N1 is positive or negative  // 
+CheckSign, LOAD N1 
+		   SKIPCOND 800 / if N1 > 0 jump to multiply
+           JUMP MultiplyNegative
+           JUMP Multiply
+           
+// Multiplies negative numbers // 
+MultiplyNegative, LOAD ANS 
+                  SUBT N2 / add for multiplication
+                  STORE ANS 
+                  LOAD N1
+                  ADD ONE / increment by one 
+                  STORE N1
+                  SKIPCOND 400  / if N1 = 0 jump to out else loop
+                  JUMP MultiplyNegative
+                  JUMP Out
+                  
+// Multiplies positive numbers // 
+Multiply, LOAD ANS
+		  ADD N2 / add for multiplication
+          STORE ANS 
+          LOAD N1
+          SUBT ONE / decrement by one
+          STORE N1
+          SKIPCOND 400
+          JUMP Multiply / if N1 = 0 jump to out else loop
+          JUMP Out
+
+// Adds two numbers // 
+Add, LOAD N1
+	 ADD N2
+     STORE ANS
+     JUMP Out
+
+// Subtracts two numbers // 
+Sub, LOAD N1
+	 SUBT N2
+     STORE ANS
+     JUMP Out
+
+// Checks for 0, cannot divide by 0 // 
+Div, LOAD N1 
+	 STORE REM
+     LOAD N2
+     SKIPCOND 800 // if N2 = 0, print 0 else go to divide loop 
+     JUMP Out
+     JUMP DivLoop
+
+// Divides two numbers and saves remainder // 
+DivLoop, LOAD REM     
+		 SUBT N2  // Subtract for division     
+         STORE REM // Store remainder    
+         
+         LOAD ANS     
+         ADD ONE // Add one for answer    
+         STORE ANS    
+         
+         LOAD REM     
+         SUBT N2      
+         SKIPCOND 000 / if remainder - divisor < 0, Loop else print ans and remainder
+         JUMP DivLoop
+         JUMP DivOut
+         
+         
+// Output answer // 
+Out, LOAD ANS
+	 OUTPUT / output answer
+     JUMP End
+
+// Output division answer // 
+DivOut, LOAD ANS
+		OUTPUT / output answer
+        LOAD REM
+        OUTPUT / output remainder
+        JUMP End
+
+// Prints zero for invalid operator // 
+Invalid, LOAD ZERO
+		 OUTPUT
+         JUMP End
+
+// Sets output variables back to 0 and ends program // 
+End, LOAD ANS
+	 SUBT ANS 
+     STORE ANS
+     
+     LOAD REM
+     SUBT REM
+     STORE REM
+     
+	 HALT
+     
+// Declare Variables 
+N1, DEC 0
+N2, DEC 0
+OP, DEC 0
+TIMES, DEC 42
+PLUS, DEC 43
+MINUS, DEC 45
+DIVIDE, DEC 47
+ANS, DEC 0
+ONE, DEC 1
+ZERO, DEC 0
+REM, DEC 0
