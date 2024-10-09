@@ -1,0 +1,17 @@
+/ First Sample Program 
+/ Robin Ehrlich
+/ Version 1.0
+/ September 21, 2022
+
+      load v1           / v3 = v1 + v2
+      add v2
+      store v3
+      input             / get a number
+      store v4
+      output            / display it
+      halt
+
+v1,   dec 36
+v2,   dec -24
+v3,   dec 0
+v4,   dec 0

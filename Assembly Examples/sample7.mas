@@ -1,0 +1,27 @@
+/ Sample Program to show loops
+/ Sum the numbers 0 through 9
+
+/ Robin Ehrlich
+/ Version 1.0
+/ September 18, 2024
+
+top,	load	i	/check if done
+	subt	n
+	skipcond 400
+	jump	inc
+	load	sum	/ done, display sum
+	output
+	halt
+
+inc,	load	i	/ add current value to sum
+	add	sum
+	store	sum
+	load	i	/ increment loop counter
+	add	one
+	store	i
+	jump top
+
+one,	dec	1
+i,	dec	0
+n,	dec	10
+sum,	dec	0

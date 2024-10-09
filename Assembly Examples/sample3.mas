@@ -1,0 +1,41 @@
+/ Sample Program to Count Negative Entries in an Array
+/ Robin Ehrlich
+/ Version 1.0
+/ September 21, 2022
+
+        jump    start         / skip over data
+array,  dec     10            / array to process
+        dec     20
+        dec     -5
+        dec     6
+        dec     -3
+aSize,  dec     5             / number of entries in array
+one,    dec     1             / constant 1
+fArray, hex     1             / address of first entry in array
+nArray, hex     0             / next entry to process
+aCount, dec     0             / number of entries processed
+nCount, dec     0             / count of negative entries
+
+start,  load    fArray        / initialize loop variables
+        store   nArray
+        clear
+        store   nCount
+        store   aCount
+loop,   loadi   nArray        / check next entry in array
+        skipCond 000
+        jump    next
+        load    nCount        / entry is negative, count it
+        add     one
+        store   nCount
+next,   load    nArray        / skip to next entry in array
+        add     one
+        store   nArray
+        load    aCount        / count number of entries processed
+        add     one
+        store   aCount
+        subt    aSize         / check if more entries
+        skipCond 400
+        jump    loop          / process next entry
+        load    nCount        / output final result
+        output
+        halt

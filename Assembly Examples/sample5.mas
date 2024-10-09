@@ -1,0 +1,33 @@
+/ ICS232 - Program to find largest number entered by user
+/ Feb 14, 2022
+/ Robin Ehrlich
+
+loop,   INPUT              / get next number
+        STORE  V1          / save value
+        SKIPCOND 400       / skip next instruction if 0
+        JUMP   process     / non-zero, process this number
+        JUMP   display     / done, display largest value
+process, JNS   isMax       / call sunroutine to process newest number
+        JUMP   loop        / get next number
+   
+display, LOAD  MAX         / display largest number found
+        OUTPUT
+        HALT               / end program
+
+V1,     DEC 0
+MAX,    DEC -3200
+
+/ isMax - determine if number is largest number
+
+/  entry - V1 - new number
+/          MAX - largest number so far
+/  exit  - MAX - new largest number
+
+isMax,  HEX 0              / return address
+        LOAD   V1          / check new value
+        SUBT   MAX      
+        SKIPCOND 800       / if greater than previous
+        JUMP   isExit      / if less than previous, exit
+        LOAD   V1          / save new max value
+        STORE  MAX
+isExit, JUMPI  isMax       / return

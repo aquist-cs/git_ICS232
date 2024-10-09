@@ -1,0 +1,28 @@
+/ Sample Program using skipcond
+/ Robin Ehrlich
+/ Version 1.0
+/ September 21, 2022
+
+        load   v1
+        skipcond 000 / if < 0
+        jump   cont1
+neg,    load   N
+        jump   display
+cont1,  skipcond 400 / if = 0
+        jump   cont2
+zero,   load Z
+        jump display
+cont2,  load P
+
+/ display final result
+
+display, output
+        halt
+
+v1,     dec 0
+
+/ constants
+
+N,      hex 4E
+P,      hex 50
+Z,      hex 5A / character Z

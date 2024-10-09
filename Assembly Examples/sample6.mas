@@ -1,0 +1,47 @@
+/ Implement various C statements
+/ Robin Ehrlich
+/ Version 1.0
+/ February 8, 2024
+
+/ Implement:
+/ X = A + B - 3
+
+	LOAD	A
+	ADD	B
+	SUBT	THREE
+	STORE	X
+	OUTPUT
+
+/ X = A - B + 4
+
+	LOAD	A
+	SUBT	B
+	ADD	FOUR
+	STORE	X
+	OUTPUT
+
+/ IF (A  + 1 > B + 3)     
+/	X = 3
+/ ELSE
+/	X = 4
+
+	LOAD	A	/ A + 1 - B - 3 > 0
+	ADD	ONE
+	SUBT	B
+	SUBT	THREE
+	SKIPCOND 800
+	JUMP	ELSE
+TPART,	LOAD	THREE
+	JUMP	ENDIF
+ELSE,	LOAD	FOUR
+ENDIF,	STORE	X
+	OUTPUT
+	HALT
+
+A,	DEC	10
+B,	DEC	4
+X,	DEC	0
+ONE,	DEC	1
+THREE,	DEC	3
+FOUR,	DEC	4
+	END

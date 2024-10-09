@@ -1,0 +1,41 @@
+/ Sample Program to use subroutines
+/ Robin Ehrlich
+/ Version 1.0
+/ September 21, 2022
+
+        input        / get value to check
+        store v1  
+        jns   check  / check the value
+        input        / get next value
+        store v1
+        jns   check  / check the value
+        halt         / end program
+
+/ check - display P, Z, or N depending on the value of the argument
+/
+/ entry - v1 = argument to check
+
+check,  HEX 0
+        load     v1
+        skipcond 000 / if < 0
+        jump     cont1
+neg,    load     N
+        jump     display
+cont1,  skipcond 400 / if = 0
+        jump     cont2
+zero,   load     Z
+        jump     display
+cont2,  load     P
+
+/ display final result
+
+display, output
+        jumpi   check  / return
+
+v1,     dec     -4
+
+/ constants
+
+N,      hex   4E        / character N
+P,      hex   50        / character P
+Z,      hex   5A        / character Z
